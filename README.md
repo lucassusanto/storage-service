@@ -1,4 +1,4 @@
-# storage-service
+# Storage Service
 
 SaaS file storage API implementation using Python and Flask. Cloud Computing Class Final Project.
 
@@ -24,8 +24,9 @@ pip install bcrypt pyjwt flask flask_restful gevent pickledb uuid
 ```
 
 ## Run Server
-
+```
 python main.py
+```
 
 ## Files
 
@@ -38,6 +39,8 @@ python main.py
 7. requirements.txt: List of required python packages
 
 ## Sample Commands (APIs)
+
+*tested in Windows 10
 
 - Register
 ```
