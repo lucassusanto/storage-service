@@ -17,9 +17,8 @@ SaaS file storage API implementation using Python and Flask. Cloud Computing Cla
 
 ## Requirements
 
-1. Linux OS (due to file/folder paths)
-2. Python 2.7.* or Python 3
-3. Python packages:
+1. Python 2.7.* or Python 3
+2. Python packages:
 ```
 pip install bcrypt pyjwt flask flask_restful gevent pickledb uuid
 ```
