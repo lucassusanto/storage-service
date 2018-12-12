@@ -17,8 +17,8 @@ SaaS file storage API implementation using Python and Flask. Cloud Computing Cla
 
 ## Requirements
 
-1. Linux OS
-2. Python 2.7.* or Python 3.*.*
+1. Linux OS (due to file/folder paths)
+2. Python 2.7.* or Python 3
 3. Python packages:
 ```
 pip install bcrypt pyjwt flask flask_restful gevent pickledb uuid
@@ -60,7 +60,7 @@ curl http://localhost:5000/create -X POST -H "Authorization:<token>" -d "{\"file
 
 - Open file
 ```
-curl http://localhost:5000/open -X POST -H "Authorization:<token>" -d "{\"file_path\": \"coba.txt\"}"
+curl http://localhost:5000/open -X POST -H "Authorization:<token>" -d "{\"file_path\": \"test1.txt\"}"
 ```
 
 - Delete file
@@ -95,5 +95,5 @@ curl http://localhost:5000/mvfile -X POST -H "Authorization:<token>" -d "{\"src\
 
 - Move dirs
 ```
-curl http://localhost:5000/mvdir -X POST -H "Authorization:<token>" -d "{\"src\": \"new_folder_2\", \"des\": \"new_folder_1\"}"
+curl http://localhost:5000/mvdir -X POST -H "Authorization:<token>" -d "{\"src\": \"new_folder_1\", \"des\": \"new_folder_2\"}"
 ```
