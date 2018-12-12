@@ -1,0 +1,7 @@
+bcrypt
+pyjwt
+flask
+flask_restful
+gevent
+pickledb
+uuid
