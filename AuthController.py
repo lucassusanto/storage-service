@@ -33,7 +33,7 @@ class Auth_Controller(object):
 		hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 		user.add(username, hashed)
 
-		os.mkdir('storage\\' + username)
+		os.mkdir('storage/' + username)
 
 		return True
 		

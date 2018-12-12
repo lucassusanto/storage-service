@@ -2,7 +2,7 @@ import os
 
 class File_Controller():
     def __init__(self, username):
-        self.path = 'storage\\' + username + '\\'
+        self.path = 'storage/' + username + '/'
 
     def createFile(self, filePath, content):
         path = self.path + filePath
@@ -86,7 +86,7 @@ class File_Controller():
         return 0, lists
 
     def moveFile(self, srcFile, dstFolder):
-        fileName = srcFile.split('\\')[-1]
+        fileName = srcFile.split('/')[-1]
         src = self.path + srcFile
         des = self.path + dstFolder
 
@@ -96,20 +96,20 @@ class File_Controller():
         if not os.path.isdir(des):
             return 2
 
-        des = des + '\\' + fileName
+        des = des + '/' + fileName
         os.rename(src, des)
 
         return 0
 
     def moveDir(self, srcFolder, dstFolder):
-        folderName = srcFolder.split('\\')[-1]
+        folderName = srcFolder.split('/')[-1]
         src = self.path + srcFolder
         des = self.path + dstFolder
 
         if not os.path.isdir(src) or not os.path.isdir(des):
             return 1
 
-        des = des + '\\' + folderName
+        des = des + '/' + folderName
         os.rename(src, des)
 
         return 0
