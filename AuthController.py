@@ -5,7 +5,7 @@ import os
 
 from UsersModel import *
 
-class Auth_Controller(object):
+class Auth_Controller():
 	def login(self, username, password):
 		user_detail = Users_Model().find(username)
 
@@ -31,7 +31,7 @@ class Auth_Controller(object):
 			return None
 
 		hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-		user.add(username, hashed)
+		user.createUser(username, hashed)
 
 		os.mkdir('storage/' + username)
 
@@ -44,7 +44,16 @@ class Auth_Controller(object):
 		except:
 			return None
 
-class Token_Model(object):
+	def cekStatus(self, username):
+		user_detail = Users_Model().find(username)
+		if user_detail is None:
+			return 1, 0, 0
+		
+		usedSpace, freeSpace = user_detail['used_space'],  user_detail['free_space']
+
+		return 0, usedSpace, freeSpace
+
+class Token_Model():
 	def __init__(self, data={}):
 		self.key = 'kaoskakibiru12345'
 		self.data = data

@@ -1,0 +1,20 @@
+version: '2'
+
+volumes:
+  storage:
+    driver: local
+  pickle:
+    driver: local
+
+services:
+  reverseproxy:
+     container_name: storage-reverseproxy
+     image: reverseproxy
+     ports: 
+        - "5000:8080"
+
+  storageservice:
+      image: storage-service
+      volumes:
+        - storage:/usr/src/app/storage
+        - pickle:/usr/src/app/db

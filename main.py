@@ -18,9 +18,11 @@ class Version(Resource):
 
 if not os.path.isdir('storage'):
 	os.mkdir('storage')
+if not os.path.isdir('db'):
+    os.mkdir('db')
 
-if os.path.isfile('users.db') and os.path.getsize('users.db') == 0:
-	os.remove('users.db')
+if os.path.isfile('db/users.db') and os.path.getsize('db/users.db') == 0:
+	os.remove('db/users.db')
 
 # Application
 
@@ -31,6 +33,7 @@ api = Api(app)
 
 api.add_resource(Login, '/login')
 api.add_resource(Register, '/register')
+api.add_resource(AccountStatus, '/status')
 api.add_resource(Version, '/version')
 
 api.add_resource(CreateFile, '/create')
