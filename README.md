@@ -96,3 +96,24 @@ curl http://localhost:5000/mvfile -X POST -H "Authorization:<token>" -d "{\"src\
 ```
 curl http://localhost:5000/mvdir -X POST -H "Authorization:<token>" -d "{\"src\": \"new_folder_1\", \"des\": \"new_folder_2\"}"
 ```
+
+- Check Storage Status
+```
+curl http://localhost:5000/status -H "Authorization:<token>"
+```
+
+## Docker - Getting Started
+Make sure you have docker and docker-compose installed.
+
+Build storageservice and reverseproxy image
+```
+docker build -t storage-service .
+docker build -t reverseproxy reverseproxy
+```
+
+Run docker-compose
+```
+docker-compose up --scale storageservice=3 -d
+```
+This will make 3 storageservice containers and add reverse proxy as load balancer.
+Reverse proxy is mapped to localhost:5000, so you can use above url example. Feel free to change it.

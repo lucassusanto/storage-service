@@ -40,3 +40,22 @@ class Register(Resource):
 			
 		except Exception as e:
 			return jsonify(error=str(e))
+
+class AccountStatus(Resource):
+	def __init__(self):
+		token = request.headers.get('Authorization')
+		self.username = Auth_Controller().verifyToken(token)
+
+	def get(self):
+		if not self.username:
+			return jsonify(error='invalid token')
+
+		try:
+			result, usedSpace, freeSpace = Auth_Controller().cekStatus(self.username)
+			if result == 1:
+				return jsonify(error='User not found')
+
+			return jsonify(msg='success', used_space=usedSpace, free_space=freeSpace, available_space=(freeSpace - usedSpace))
+
+		except Exception as e:
+			return jsonify(error=str(e))

@@ -1,7 +1,10 @@
 import os
 
+from UsersModel import *
+
 class File_Controller():
     def __init__(self, username):
+        self.username = username
         self.path = 'storage/' + username + '/'
 
     def createFile(self, filePath, content):
@@ -10,8 +13,16 @@ class File_Controller():
         if os.path.isfile(path):
             return 1
 
+        user = Users_Model()
+        fileSize = len(content)
+        
+        if user.canAddFile(self.username, fileSize) == False:
+            return 2
+
         with open(path, "w") as f:
             f.write(content)
+
+        user.updateUsedSpace(self.username, fileSize)
 
         return 0
 
@@ -21,6 +32,7 @@ class File_Controller():
         if not os.path.isfile(path):
             return 1
 
+        Users_Model().updateUsedSpace(self.username, -os.path.getsize(path))
         os.remove(path)
 
         return 0

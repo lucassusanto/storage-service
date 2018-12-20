@@ -23,6 +23,9 @@ class CreateFile(Resource):
 			if result == 1:
 				return jsonify(error='file exists')
 
+			if result == 2:
+				return jsonify(error='quota is full')
+
 			return jsonify(msg='success')
 
 		except Exception as e:
